@@ -48,7 +48,7 @@ app.post('/create', function(req, res){
   //blogPost.push(NewEntre);
 
 	//Post.create();
-	Post.create(NewEntre).then(function(){
+	Post.create(NewEntre).then(function(posts){
 		res.render('index', { blogPost: posts} );
 	});
 });
