@@ -45,11 +45,11 @@ app.post('/create', function(req, res){
 	NewEntre.content=req.body.content;
 	NewEntre.dateTime = d;
 
-  blogPost.push(NewEntre);
+  //blogPost.push(NewEntre);
 
 	//Post.create();
 	Post.create(NewEntre).then(function(){
-		res.render('index', { blogPost: blogPost} );
+		res.render('index', { blogPost: posts} );
 	});
 });
 
