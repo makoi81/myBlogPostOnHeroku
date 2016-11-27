@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
 var express = require('express');
-var Post = require('./models/post');
+//var Post = require('./models/post');
 var databaseURL = process.env.DATABASE_URL || 'sqlite://db';
 console.log(databaseURL);
 var sequelize = new Sequelize(databaseURL);
@@ -15,6 +15,13 @@ app.use(express.static("public"));
 // set of views engine to handlebar. ejs for ejs
 app.set('view engine', 'ejs');
 
+var Post = sequelize.define('Post', {
+    //create title and content as strings,
+    title: Sequelize.STRING,
+    content: Sequelize.STRING,
+    dateTime:Sequelize.DATE
+});
+
 //home page
 //route to the the file index.ejs
 app.get('/', function(req, res){
@@ -24,11 +31,10 @@ app.get('/', function(req, res){
 });
 
 app.get('/Post.json',function(req, res){
-	  Post.findAll().then(function(Post){
-		res.json(Post);
+	Post.findAll().then(function(posts){
+		res.json(posts);
 	});
 });
-
 
 // route to post by the form
 app.post('/create', function(req, res){
@@ -39,7 +45,7 @@ app.post('/create', function(req, res){
 	NewEntre.content=req.body.content;
 	NewEntre.dateTime = d;
 
-    blogPost.push(NewEntre);
+  blogPost.push(NewEntre);
 
 	//Post.create();
 	Post.create(NewEntre).then(function(){
