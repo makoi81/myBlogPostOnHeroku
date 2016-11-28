@@ -1,15 +1,8 @@
-
-<!DOCTYPE html>
-<html>
-<title>List File</title>
-<body>
-	<ul>
-		<%for(var i = 0; i < blogPost.length; i++){%>
-		   	<li><span><h2>Post </span><%= i+1 %></h2></li>
-            <li><h3><%= blogPost[i].dateTime%></h3></li>
-			<li><%= blogPost[i].title %></li>
-			<li><%= blogPost[i].content %></li>
-		<%}%>	 
-	</ul>	
-</body>
-</html>
+<ul>
+	<%for(var i = 0; i < blogPost.length; i++){%>
+		<li><span><h2>Post </span><%= i+1 %></h2></li>
+		<li><h3><%= blogPost[i].dateTime%></h3></li>
+		<li><%= blogPost[i].title %></li>
+		<li><%= blogPost[i].content %></li>
+	<%}%>
+</ul>
